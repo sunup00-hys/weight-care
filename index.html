@@ -133,6 +133,10 @@ function renderGraph(weekly=false){
   const markerX=(x('2026-11-23')+x('2026-11-24'))/2;
   if(markerX>=L&&markerX<=R){const labelX=markerX-7,labelY=B-8;svg+='<g data-measurement-change="2026-11-24"><title>남편 · 11월 24일부터 아침 공복 측정으로 변경</title><line x1="'+markerX+'" x2="'+markerX+'" y1="'+T+'" y2="'+B+'" stroke="'+colors.husband+'" stroke-width="1" stroke-dasharray="3 5" opacity=".8"/><text x="'+labelX+'" y="'+labelY+'" transform="rotate(-90 '+labelX+' '+labelY+')" font-size="11" fill="'+colors.husband+'" stroke="#14203a" stroke-width="3" paint-order="stroke" stroke-linejoin="round">아침 공복 측정으로 변경</text></g>';}
  }
+ if(!weekly&&active.includes('wife')){
+  const markerX=(x('2026-11-27')+x('2026-11-28'))/2;
+  if(markerX>=L&&markerX<=R){const labelX=markerX-7,labelY=B-8;svg+='<g data-measurement-change="2026-11-28"><title>아내 · 11월 28일부터 아침 공복 측정으로 변경</title><line x1="'+markerX+'" x2="'+markerX+'" y1="'+T+'" y2="'+B+'" stroke="'+'#ff6b6b'+'" stroke-width="1" stroke-dasharray="3 5" opacity=".8"/><text x="'+labelX+'" y="'+labelY+'" transform="rotate(-90 '+labelX+' '+labelY+')" font-size="11" fill="'+'#ff6b6b'+'" stroke="#14203a" stroke-width="3" paint-order="stroke" stroke-linejoin="round">아침 공복 측정으로 변경</text></g>';}
+ }
  if(weekly&&summary.weeks){const ongoing=data.some(w=>w.period.includes('진행 중'));svg+='<text x="250" y="322" text-anchor="middle" font-size="11" fill="#aebfdf">'+summary.weeks+'주차'+(ongoing?' 진행 중 · 오늘까지 평균':' · 토요일~금요일 기준')+'</text>';}
  if(!data.length)svg+='<text x="250" y="166" text-anchor="middle" font-size="15" font-weight="700" fill="#e5edff">체중을 기록하면 여기에 표시돼요</text>';
  svg+='<text x="250" y="347" text-anchor="middle" font-size="11" fill="#aebfdf">'+(weekly?nice(summary.from)+' — '+nice(summary.until)+' · 기록일 평균':from.replaceAll('-','.')+' — '+until.replaceAll('-','.')+' · '+chartDays+'일')+'</text></svg>';
